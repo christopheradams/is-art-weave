@@ -9,6 +9,7 @@
   "author": "Christopher Adams",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
-    "snowpack": "^3.3.0"
+    "snowpack": "^3.3.0",
+    "testweave-sdk": "^0.2.2"
   }
 }
