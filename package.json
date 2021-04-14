@@ -14,6 +14,7 @@
     "testweave-sdk": "^0.2.2"
   },
   "dependencies": {
-    "arweave": "^1.10.13"
+    "arweave": "^1.10.13",
+    "util": "^0.12.3"
   }
 }
