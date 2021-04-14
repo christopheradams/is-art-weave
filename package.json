@@ -4,6 +4,7 @@
   "description": "Is Art for Artweave",
   "main": "index.js",
   "scripts": {
+    "start": "snowpack dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Christopher Adams",
@@ -11,5 +12,8 @@
   "devDependencies": {
     "snowpack": "^3.3.0",
     "testweave-sdk": "^0.2.2"
+  },
+  "dependencies": {
+    "arweave": "^1.10.13"
   }
 }
