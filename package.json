@@ -11,6 +11,7 @@
   "license": "GPL-3.0-or-later",
   "devDependencies": {
     "smartweave": "^0.4.29",
+    "smartweave-testing": "^0.2.0",
     "snowpack": "^3.3.0",
     "testweave-sdk": "^0.2.2"
   },
