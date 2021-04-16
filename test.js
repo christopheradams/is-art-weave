@@ -1,7 +1,7 @@
 const SmartweaveTester = require('smartweave-testing').default;
 const {handle} = require('./is-art');
 
-const caller = "PG1L9xap05bkDSgKSscFRNz-sU4IR9rI9x7tKBNnUVo";
+const caller = "MlV6DeOtRmakDOf6vgOBlif795tcWimgyPsYYNQ8q1Y"; // testWeave.rootJWK
 
 const initialState = {
   isArt: false
