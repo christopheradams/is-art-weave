@@ -11,12 +11,21 @@ const input = {
   function: 'toggle'
 };
 
-async function main() {
+async function toggle() {
   const smartweave = new SmartweaveTester(handle, initialState, caller);
 
-  const result = await smartweave.execute(input);
+  return await smartweave.execute(input);
+}
 
-  console.log(result);
+async function main() {
+  const result1 = await toggle();
+  console.log(result1, result1.isArt == true);
+
+  const result2 = await toggle();
+  console.log(result2, result1.isArt == false);
+
+  const result3 = await toggle();
+  console.log(result3, result1.isArt == true);
 }
 
 main();
