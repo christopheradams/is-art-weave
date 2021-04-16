@@ -1,3 +1,4 @@
+const fs = require('fs');
 const Arweave = require('arweave');
 const TestWeave = require('testweave-sdk');
 const SmartWeaveSdk = require('smartweave');
@@ -12,21 +13,8 @@ async function main() {
 
   const testWeave = await TestWeave.default.init(arweave);
 
-  console.log(testWeave.rootJWK);
-
-  const contractSrc = `
-export function handle (state, action) {
-  if (action.input.function === 'toggle') {
-    state.isArt = !state.isArt;
-  }
-}
-`;
-
-  const initState = `
-{
-  "isArt": false
-}
-`
+  const contractSrc = await fs.readFileSync('./contracts/is-art.js');
+  const initState = await fs.readFileSync('./contracts/is-art.json');
 
   const testContract = await SmartWeaveSdk.createContract(arweave, testWeave.rootJWK, contractSrc, initState)
 
