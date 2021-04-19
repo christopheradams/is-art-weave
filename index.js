@@ -9,7 +9,7 @@ async function displayStatus(props) {
     props.contractId
   );
 
-  console.log('[Is Art] State:', state);
+  console.log('[Is Art] Contract State:', state);
 
   const status = document.getElementById('is-art-status');
 
@@ -50,7 +50,7 @@ async function main() {
   });
 
   const contractId = import.meta.env.IS_ART_CONTRACT_ID;
-  console.log('[Is Art] Contract:', contractId);
+  console.log('[Is Art] Contract ID:', contractId);
 
   displayStatus({arweave, contractId});
   handleKeyfile();
