@@ -10,7 +10,7 @@ const input = { function: 'toggle' };
 
 describe('is-art', function() {
   describe('toggle', function() {
-    it('sets toggles art and not art', async function() {
+    it('toggles art and not art', async function() {
       const smartweave = new SmartweaveTester(handle, state, caller);
 
       const art = await smartweave.execute(input);
