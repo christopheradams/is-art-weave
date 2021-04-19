@@ -14,13 +14,13 @@
     "chai": "^4.3.4",
     "esm": "^3.2.25",
     "mocha": "^8.3.2",
-    "smartweave": "^0.4.29",
     "smartweave-testing": "^0.2.0",
     "snowpack": "^3.3.0",
     "testweave-sdk": "^0.2.2"
   },
   "dependencies": {
     "arweave": "^1.10.13",
+    "smartweave": "^0.4.29",
     "util": "^0.12.3"
   }
 }
