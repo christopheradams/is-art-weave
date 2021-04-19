@@ -4,19 +4,19 @@ import * as SmartWeave from 'smartweave';
 let wallet;
 
 async function displayStatus(props) {
-  const state = await SmartWeave.readContract(
+  const contractState = await SmartWeave.readContract(
     props.arweave,
     props.contractId
   );
 
-  console.log('[Is Art] Contract State:', state);
+  console.log('[Is Art] Contract State:', contractState);
 
-  const status = document.getElementById('is-art-status');
+  const statusElement = document.getElementById('is-art-status');
 
-  if(state.isArt) {
-    status.innerText = 'is';
+  if(contractState.isArt) {
+    statusElement.innerText = 'is';
   } else {
-    status.innerText = 'is not';
+    statusElement.innerText = 'is not';
   }
 }
 
