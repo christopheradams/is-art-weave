@@ -4,6 +4,7 @@
   "description": "Is Art for Artweave",
   "main": "index.js",
   "scripts": {
+    "build": "snowpack build --polyfill-node",
     "start": "snowpack dev",
     "test": "mocha --require esm"
   },
