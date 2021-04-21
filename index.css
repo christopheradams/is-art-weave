@@ -31,12 +31,12 @@ body {
 }
 
 #is-art-form {
-  margin-left: 1em;
+  margin-left: 1vw;
   margin-top: 2em;
 }
 
 #is-art-keyfile {
-  max-width: 350px;
+  max-width: 90vw;
 }
 
 .is-art-label {
@@ -54,4 +54,10 @@ body {
 
 .is-art-form-group {
   margin-top: 2em;
+}
+
+@media screen and (min-width: 1000px) {
+  #is-art {
+    font-size: 8vw;
+  }
 }
