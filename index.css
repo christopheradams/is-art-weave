@@ -34,6 +34,10 @@ body {
   margin-top: 2em;
 }
 
+#is-art-keyfile {
+  max-width: 350px;
+}
+
 .is-art-label {
   color: #444c55;
   margin: 0.3125em 0;
