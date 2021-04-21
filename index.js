@@ -118,7 +118,9 @@ async function main() {
   log('Contract ID', App.contractId);
 
   handleDocument();
+
   readStatus();
+  setInterval(readStatus, 60 * 1000);
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
