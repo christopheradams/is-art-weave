@@ -62,7 +62,7 @@ async function handleSubmit(event) {
   event.preventDefault();
   Doc.submit.disabled = true;
 
-  if (window.confirm('Do you want to submit the transaction?')) {
+  if (window.confirm('Do you approve the transaction to be submitted?')) {
     const txId = await writeContract();
     log('Transaction ID', txId);
     window.alert(`Transaction ID: ${txId}`);
