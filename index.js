@@ -18,7 +18,9 @@ const Doc = {
 };
 
 function log(message, data) {
-  console.log(`[Is Art] ${message}:`, data);
+  if (import.meta.env.MODE === 'development') {
+    console.log(`[Is Art] ${message}:`, data);
+  }
 }
 
 async function readContract() {
