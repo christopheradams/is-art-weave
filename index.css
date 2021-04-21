@@ -1,1 +1,21 @@
 @import 'normalize.css/normalize.css';
+
+.container {
+  padding-top: 15vh;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#is-art {
+  font-size: 36pt;
+}
+
+#is-art-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.form-group {
+  margin: 15px 0;
+}
