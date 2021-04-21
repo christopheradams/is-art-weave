@@ -11,9 +11,10 @@ const App = {
 };
 
 const Doc = {
+  form: null,
   keyfile: null,
   status: null,
-  toggle: null,
+  toggle: null
 }
 
 async function readContract() {
@@ -100,8 +101,10 @@ function handleDocument() {
   Doc.keyfile = document.getElementById('is-art-keyfile');
   Doc.keyfile.addEventListener('change', handleFiles, false);
 
+  Doc.form = document.getElementById('is-art-form');
+  Doc.form.addEventListener('submit', handleSubmit, false);
+
   Doc.toggle = document.getElementById('is-art-toggle');
-  Doc.toggle.addEventListener('click', handleSubmit, false);
 }
 
 function log(message, data) {
