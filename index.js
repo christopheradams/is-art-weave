@@ -1,26 +1,30 @@
 import Arweave from 'arweave';
-import * as SmartWeave from 'smartweave';
+import SmartWeave from 'smartweave';
 
 const App = {
   arweave: null,
   contractId: null,
   input: {
-    function: 'toggle'
+    function: 'toggle',
   },
-  wallet: null
+  wallet: null,
 };
 
 const Doc = {
   form: null,
   keyfile: null,
   status: null,
-  submit: null
+  submit: null,
+};
+
+function log(message, data) {
+  console.log(`[Is Art] ${message}:`, data);
 }
 
 async function readContract() {
   const contractState = await SmartWeave.readContract(
     App.arweave,
-    App.contractId
+    App.contractId,
   );
 
   log('Contract State', contractState);
@@ -33,14 +37,14 @@ async function writeContract() {
     App.arweave,
     App.wallet,
     App.contractId,
-    App.input
+    App.input,
   );
 
   return interactWrite;
 }
 
 async function renderStatus(contractState) {
-  if(contractState.isArt) {
+  if (contractState.isArt) {
     Doc.status.innerText = 'is';
   } else {
     Doc.status.innerText = 'is not';
@@ -56,7 +60,7 @@ async function handleSubmit(event) {
   event.preventDefault();
   Doc.submit.disabled = true;
 
-  if (window.confirm("Do you want to submit the transaction?")) {
+  if (window.confirm('Do you want to submit the transaction?')) {
     const txId = await writeContract();
     log('Transaction ID', txId);
     window.alert(`Transaction ID: ${txId}`);
@@ -70,14 +74,14 @@ function handleFiles() {
 
   const inputFile = this.files[0];
 
-  filereader.addEventListener('load', event => {
+  filereader.addEventListener('load', (event) => {
     try {
       App.wallet = JSON.parse(event.target.result);
       App.arweave.wallets.jwkToAddress(App.wallet).then((address) => {
         log('Wallet', address);
       });
 
-      log('Key file', inputFile.name)
+      log('Key file', inputFile.name);
     } catch (e) {
       log('Invalid key file', e);
     }
@@ -96,10 +100,6 @@ function handleDocument() {
   Doc.form.addEventListener('submit', handleSubmit, false);
 
   Doc.submit = document.getElementById('is-art-submit');
-}
-
-function log(message, data) {
-  console.log(`[Is Art] ${message}:`, data);
 }
 
 async function main() {
