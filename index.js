@@ -10,6 +10,12 @@ const App = {
   wallet: null
 };
 
+const Doc = {
+  keyfile: null,
+  status: null,
+  toggle: null,
+}
+
 async function readContract() {
   const contractState = await SmartWeave.readContract(
     App.arweave,
@@ -22,23 +28,30 @@ async function readContract() {
 }
 
 async function writeContract() {
-  const interactWrite = await SmartWeave.interactWriteDryRun(
+  const interactWrite = await SmartWeave.interactWrite(
     App.arweave,
     App.wallet,
     App.contractId,
     App.input
   );
 
-  console.log(interactWrite);
+  return interactWrite;
+}
+
+async function interactRead() {
+  const interactRead = await SmartWeave.interactRead(
+    App.arweave,
+    App.wallet,
+    App.contractId,
+    App.input
+  );
 }
 
 async function renderStatus(contractState) {
-  const statusElement = document.getElementById('is-art-status');
-
   if(contractState.isArt) {
-    statusElement.innerText = 'is';
+    Doc.status.innerText = 'is';
   } else {
-    statusElement.innerText = 'is not';
+    Doc.status.innerText = 'is not';
   }
 }
 
@@ -48,15 +61,16 @@ async function readStatus() {
 }
 
 async function handleSubmit(event) {
-  // disable toggle
-  // confirm dialog
   event.preventDefault();
-  await writeContract();
-}
+  Doc.toggle.disabled = true;
 
-function handleToggle() {
-  const toggleInput = document.getElementById('is-art-toggle');
-  toggleInput.addEventListener('click', handleSubmit, false);
+  if (window.confirm("Do you want to submit the transaction?")) {
+    const txId = await writeContract();
+    log('Transaction ID', txId);
+    window.alert(`Transaction ID: ${txId}`);
+  }
+
+  Doc.toggle.disabled = false;
 }
 
 function handleFiles() {
@@ -80,9 +94,14 @@ function handleFiles() {
   filereader.readAsText(inputFile);
 }
 
-function handleKeyfile() {
-  const keyfileInput = document.getElementById('is-art-keyfile');
-  keyfileInput.addEventListener('change', handleFiles, false);
+function handleDocument() {
+  Doc.status = document.getElementById('is-art-status');
+
+  Doc.keyfile = document.getElementById('is-art-keyfile');
+  Doc.keyfile.addEventListener('change', handleFiles, false);
+
+  Doc.toggle = document.getElementById('is-art-toggle');
+  Doc.toggle.addEventListener('click', handleSubmit, false);
 }
 
 function log(message, data) {
@@ -98,9 +117,8 @@ async function main() {
   App.contractId = import.meta.env.IS_ART_CONTRACT_ID;
   log('Contract ID', App.contractId);
 
+  handleDocument();
   readStatus();
-  handleToggle();
-  handleKeyfile();
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
