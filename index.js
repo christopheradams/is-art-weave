@@ -4,6 +4,9 @@ import * as SmartWeave from 'smartweave';
 const App = {
   arweave: null,
   contractId: null,
+  input: {
+    function: 'toggle'
+  },
   wallet: null
 };
 
@@ -18,9 +21,18 @@ async function readContract() {
   return contractState;
 }
 
-async function renderStatus() {
-  const contractState = await readContract();
+async function writeContract() {
+  const interactWrite = await SmartWeave.interactWriteDryRun(
+    App.arweave,
+    App.wallet,
+    App.contractId,
+    App.input
+  );
 
+  console.log(interactWrite);
+}
+
+async function renderStatus(contractState) {
   const statusElement = document.getElementById('is-art-status');
 
   if(contractState.isArt) {
@@ -28,6 +40,23 @@ async function renderStatus() {
   } else {
     statusElement.innerText = 'is not';
   }
+}
+
+async function readStatus() {
+  const contractState = await readContract();
+  renderStatus(contractState);
+}
+
+async function handleSubmit(event) {
+  // disable toggle
+  // confirm dialog
+  event.preventDefault();
+  await writeContract();
+}
+
+function handleToggle() {
+  const toggleInput = document.getElementById('is-art-toggle');
+  toggleInput.addEventListener('click', handleSubmit, false);
 }
 
 function handleFiles() {
@@ -69,7 +98,8 @@ async function main() {
   App.contractId = import.meta.env.IS_ART_CONTRACT_ID;
   log('Contract ID', App.contractId);
 
-  renderStatus();
+  readStatus();
+  handleToggle();
   handleKeyfile();
 }
 
