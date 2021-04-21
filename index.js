@@ -1,15 +1,25 @@
 import Arweave from 'arweave';
 import * as SmartWeave from 'smartweave';
 
-let wallet;
+const App = {
+  arweave: null,
+  contractId: null,
+  wallet: null
+};
 
-async function displayStatus(props) {
+async function readContract() {
   const contractState = await SmartWeave.readContract(
-    props.arweave,
-    props.contractId
+    App.arweave,
+    App.contractId
   );
 
-  console.log('[Is Art] Contract State:', contractState);
+  log('Contract State', contractState);
+
+  return contractState;
+}
+
+async function renderStatus() {
+  const contractState = await readContract();
 
   const statusElement = document.getElementById('is-art-status');
 
@@ -25,13 +35,16 @@ function handleFiles() {
 
   const inputFile = this.files[0];
 
-  filereader.addEventListener('load', function (event) {
+  filereader.addEventListener('load', event => {
     try {
-      wallet = JSON.parse(event.target.result);
+      App.wallet = JSON.parse(event.target.result);
+      App.arweave.wallets.jwkToAddress(App.wallet).then((address) => {
+        log('Wallet', address);
+      });
 
-      console.log('[Is Art] Loaded key file:', inputFile.name)
+      log('Key file', inputFile.name)
     } catch (e) {
-      console.log(e);
+      log('Invalid key file', e);
     }
   });
 
@@ -43,16 +56,20 @@ function handleKeyfile() {
   keyfileInput.addEventListener('change', handleFiles, false);
 }
 
+function log(message, data) {
+  console.log(`[Is Art] ${message}:`, data);
+}
+
 async function main() {
-  const arweave = Arweave.init();
-  arweave.network.getInfo().then((info) => {
-    console.log('[Is Art] Arweave network:', info.network);
+  App.arweave = Arweave.init();
+  App.arweave.network.getInfo().then((info) => {
+    log('Artweave network', info.network);
   });
 
-  const contractId = import.meta.env.IS_ART_CONTRACT_ID;
-  console.log('[Is Art] Contract ID:', contractId);
+  App.contractId = import.meta.env.IS_ART_CONTRACT_ID;
+  log('Contract ID', App.contractId);
 
-  displayStatus({arweave, contractId});
+  renderStatus();
   handleKeyfile();
 }
 
