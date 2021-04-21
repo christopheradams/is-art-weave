@@ -9,23 +9,26 @@
 </head>
 <body>
   <div class="container">
-    <div id="is-art">
-      <span>This</span>
-      <span>contract</span>
-      <span>
-        <span id="is-art-status">may be</span> art
-      </span>
+    <div class="row">
+      <div id="is-art">
+        <span>This</span>
+        <span>contract</span>
+        <span id="is-art-status">may be</span>
+        <span>art.</span>
+      </div>
     </div>
-    <form id="is-art-form" action="" method="get">
-      <div class="is-art-form-group">
-        <input class="is-art-btn" id="is-art-submit" type="submit" value="Submit">
-      </div>
-
-      <div id="is-art-keyfile-group" class="is-art-form-group">
-        <label for="is-art-keyfile">Add a key file</label>
-        <input id="is-art-keyfile" type="file" accept="application/json" required>
-      </div>
-    </form>
+    <div class="row">
+      <form id="is-art-form" action="" method="get">
+        <div id="is-art-keyfile-group" class="is-art-form-group">
+          <label for="is-art-keyfile" class="is-art-label">Add a key file</label>
+          <input id="is-art-keyfile" type="file" accept="application/json" required>
+        </div>
+        <div class="is-art-form-group">
+          <label for="is-art-btn" class="is-art-label">Create a transaction</label>
+          <input class="is-art-btn" id="is-art-submit" type="submit" value="Submit">
+        </div>
+      </form>
+    </div>
   </div>
 </body>
 </html>

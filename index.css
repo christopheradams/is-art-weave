@@ -6,32 +6,36 @@ html {
 
 body {
   color: #212529;
-  background-color: #f7f7f7;
+  background-color: #f4f5f6;
 }
 
 .container {
-  padding-top: 15vh;
+  padding-top: 10vh;
   margin: 0 auto;
-  text-align: center;
+}
+
+.row {
+  margin: 0 30px;
 }
 
 #is-art {
   font-weight: 700;
-  font-size: 72px;
-  line-height: 64px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+  font-size: 90px;
+  line-height: 80px;
+}
+
+#is-art-status {
+  text-decoration: underline;
 }
 
 #is-art-form {
   margin-top: 30px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
 }
 
-#is-art-submit {
+.is-art-label {
+  color: #444c55;
+  margin: 5px 0;
+  display: block;
 }
 
 .is-art-form-group {
