@@ -2,6 +2,7 @@
 
 html {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 16px;
 }
 
 body {
@@ -15,13 +16,13 @@ body {
 }
 
 .row {
-  margin: 0 30px;
+  margin: 0 5vw;
 }
 
 #is-art {
   font-weight: 700;
-  font-size: 90px;
-  line-height: 80px;
+  font-size: 5.625em;
+  line-height: 0.888em;
 }
 
 #is-art-status {
@@ -29,15 +30,15 @@ body {
 }
 
 #is-art-form {
-  margin-top: 30px;
+  margin-top: 2em;
 }
 
 .is-art-label {
   color: #444c55;
-  margin: 5px 0;
+  margin: 0.3125em 0;
   display: block;
 }
 
 .is-art-form-group {
-  margin-top: 30px;
+  margin-top: 2em;
 }
