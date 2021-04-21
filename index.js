@@ -39,15 +39,6 @@ async function writeContract() {
   return interactWrite;
 }
 
-async function interactRead() {
-  const interactRead = await SmartWeave.interactRead(
-    App.arweave,
-    App.wallet,
-    App.contractId,
-    App.input
-  );
-}
-
 async function renderStatus(contractState) {
   if(contractState.isArt) {
     Doc.status.innerText = 'is';
