@@ -42,6 +42,13 @@ body {
   color: #444c55;
   margin: 0.3125em 0;
   display: block;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  letter-spacing: 0.1em;
+}
+
+.is-art-btn {
+  font-family: monospace;
 }
 
 .is-art-form-group {
