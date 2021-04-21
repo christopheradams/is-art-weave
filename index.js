@@ -90,7 +90,20 @@ function handleFiles() {
   filereader.readAsText(inputFile);
 }
 
-function handleDocument() {
+function initApp() {
+  App.arweave = Arweave.init();
+  App.arweave.network.getInfo().then((info) => {
+    log('Artweave network', info.network);
+  });
+
+  App.contractId = import.meta.env.IS_ART_CONTRACT_ID;
+  log('Contract ID', App.contractId);
+
+  readStatus();
+  setInterval(readStatus, 60 * 1000);
+}
+
+function initDocument() {
   Doc.status = document.getElementById('is-art-status');
 
   Doc.keyfile = document.getElementById('is-art-keyfile');
@@ -103,18 +116,8 @@ function handleDocument() {
 }
 
 async function main() {
-  App.arweave = Arweave.init();
-  App.arweave.network.getInfo().then((info) => {
-    log('Artweave network', info.network);
-  });
-
-  App.contractId = import.meta.env.IS_ART_CONTRACT_ID;
-  log('Contract ID', App.contractId);
-
-  handleDocument();
-
-  readStatus();
-  setInterval(readStatus, 60 * 1000);
+  initApp();
+  initDocument();
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
