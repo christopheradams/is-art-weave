@@ -11,7 +11,8 @@ body {
 }
 
 .container {
-  padding-top: 10vh;
+  padding-top: 5vh;
+  padding-bottom: 2.5vh;
   margin: 0 auto;
 }
 
@@ -21,7 +22,7 @@ body {
 
 #is-art {
   font-weight: 700;
-  font-size: 5.625em;
+  font-size: 5em;
   line-height: 0.888em;
 }
 
