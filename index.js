@@ -14,7 +14,7 @@ const Doc = {
   form: null,
   keyfile: null,
   status: null,
-  toggle: null
+  submit: null
 }
 
 async function readContract() {
@@ -63,7 +63,7 @@ async function readStatus() {
 
 async function handleSubmit(event) {
   event.preventDefault();
-  Doc.toggle.disabled = true;
+  Doc.submit.disabled = true;
 
   if (window.confirm("Do you want to submit the transaction?")) {
     const txId = await writeContract();
@@ -71,7 +71,7 @@ async function handleSubmit(event) {
     window.alert(`Transaction ID: ${txId}`);
   }
 
-  Doc.toggle.disabled = false;
+  Doc.submit.disabled = false;
 }
 
 function handleFiles() {
@@ -104,7 +104,7 @@ function handleDocument() {
   Doc.form = document.getElementById('is-art-form');
   Doc.form.addEventListener('submit', handleSubmit, false);
 
-  Doc.toggle = document.getElementById('is-art-toggle');
+  Doc.submit = document.getElementById('is-art-submit');
 }
 
 function log(message, data) {
