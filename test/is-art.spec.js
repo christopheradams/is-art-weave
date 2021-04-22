@@ -19,4 +19,20 @@ describe('is-art', function() {
       assert.equal(notart.isArt, false)
     });
   });
+
+  describe('invalid input', function() {
+    it('throws an error', async function() {
+      const smartweave = new SmartweaveTester(handle, state, caller);
+
+      await assert.rejects(
+        async () => {
+          await smartweave.execute({});
+        },
+        {
+          name: 'Error',
+          message: 'Invalid input'
+        }
+      );
+    });
+  });
 });
