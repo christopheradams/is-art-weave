@@ -6,7 +6,7 @@
   "scripts": {
     "build": "snowpack build --polyfill-node",
     "start": "snowpack dev",
-    "test": "mocha --require esm"
+    "test": "standard && mocha --require esm"
   },
   "author": "Christopher Adams",
   "license": "GPL-3.0-or-later",
