@@ -9,6 +9,7 @@ const App = {
   input: {
     function: 'toggle'
   },
+  tx: null,
   wallet: null
 }
 
@@ -55,6 +56,10 @@ function renderStatus (contractState) {
   }
 }
 
+function renderTransaction (txId) {
+  Doc.tx.innerText = txId
+}
+
 async function readStatus () {
   const contractState = await readContract()
   renderStatus(contractState)
@@ -65,9 +70,10 @@ async function handleSubmit (event) {
   Doc.submit.disabled = true
 
   if (window.confirm('Do you approve the transaction to be submitted?')) {
+    renderTransaction('None')
     const txId = await writeContract()
     log('Transaction ID', txId)
-    window.alert(`Transaction ID: ${txId}`)
+    renderTransaction(txId)
   }
 
   Doc.submit.disabled = false
@@ -117,6 +123,7 @@ function initDocument () {
   Doc.form.addEventListener('submit', handleSubmit, false)
 
   Doc.submit = document.getElementById('is-art-submit')
+  Doc.tx = document.getElementById('is-art-tx')
 }
 
 async function main () {
