@@ -1,127 +1,129 @@
-import Arweave from 'arweave';
-import SmartWeave from 'smartweave';
+/* global FileReader */
+
+import Arweave from 'arweave'
+import SmartWeave from 'smartweave'
 
 const App = {
   arweave: null,
   contractId: null,
   input: {
-    function: 'toggle',
+    function: 'toggle'
   },
-  wallet: null,
-};
+  wallet: null
+}
 
 const Doc = {
   form: null,
   keyfile: null,
   status: null,
-  submit: null,
-};
+  submit: null
+}
 
-function log(message, data) {
+function log (message, data) {
   if (import.meta.env.MODE === 'development') {
-    console.log(`[Is Art] ${message}:`, data);
+    console.log(`[Is Art] ${message}:`, data)
   }
 }
 
-async function readContract() {
+async function readContract () {
   const contractState = await SmartWeave.readContract(
     App.arweave,
-    App.contractId,
-  );
+    App.contractId
+  )
 
-  log('Contract State', contractState);
+  log('Contract State', contractState)
 
-  return contractState;
+  return contractState
 }
 
-async function writeContract() {
+async function writeContract () {
   const interactWrite = await SmartWeave.interactWrite(
     App.arweave,
     App.wallet,
     App.contractId,
-    App.input,
-  );
+    App.input
+  )
 
-  return interactWrite;
+  return interactWrite
 }
 
-async function renderStatus(contractState) {
+async function renderStatus (contractState) {
   if (contractState.isArt) {
-    Doc.status.innerText = 'is';
+    Doc.status.innerText = 'is'
   } else {
-    Doc.status.innerText = 'is not';
+    Doc.status.innerText = 'is not'
   }
 }
 
-async function readStatus() {
-  const contractState = await readContract();
-  renderStatus(contractState);
+async function readStatus () {
+  const contractState = await readContract()
+  renderStatus(contractState)
 }
 
-async function handleSubmit(event) {
-  event.preventDefault();
-  Doc.submit.disabled = true;
+async function handleSubmit (event) {
+  event.preventDefault()
+  Doc.submit.disabled = true
 
   if (window.confirm('Do you approve the transaction to be submitted?')) {
-    const txId = await writeContract();
-    log('Transaction ID', txId);
-    window.alert(`Transaction ID: ${txId}`);
+    const txId = await writeContract()
+    log('Transaction ID', txId)
+    window.alert(`Transaction ID: ${txId}`)
   }
 
-  Doc.submit.disabled = false;
+  Doc.submit.disabled = false
 }
 
-function handleFiles() {
-  const filereader = new FileReader();
+function handleFiles () {
+  const filereader = new FileReader()
 
-  const inputFile = this.files[0];
+  const inputFile = this.files[0]
 
   filereader.addEventListener('load', (event) => {
     try {
-      App.wallet = JSON.parse(event.target.result);
+      App.wallet = JSON.parse(event.target.result)
       App.arweave.wallets.jwkToAddress(App.wallet).then((address) => {
-        log('Wallet', address);
-      });
+        log('Wallet', address)
+      })
 
-      log('Key file', inputFile.name);
+      log('Key file', inputFile.name)
     } catch (e) {
-      log('Invalid key file', e);
+      log('Invalid key file', e)
     }
-  });
+  })
 
-  filereader.readAsText(inputFile);
+  filereader.readAsText(inputFile)
 }
 
-function initApp() {
-  App.arweave = Arweave.init();
+function initApp () {
+  App.arweave = Arweave.init()
   App.arweave.network.getInfo().then((info) => {
-    log('Artweave network', info.network);
-  });
+    log('Artweave network', info.network)
+  })
 
-  App.contractId = import.meta.env.IS_ART_CONTRACT_ID;
-  log('Contract ID', App.contractId);
+  App.contractId = import.meta.env.IS_ART_CONTRACT_ID
+  log('Contract ID', App.contractId)
 
-  readStatus();
-  setInterval(readStatus, 60 * 1000);
+  readStatus()
+  setInterval(readStatus, 60 * 1000)
 }
 
-function initDocument() {
-  Doc.status = document.getElementById('is-art-status');
+function initDocument () {
+  Doc.status = document.getElementById('is-art-status')
 
-  Doc.keyfile = document.getElementById('is-art-keyfile');
-  Doc.keyfile.addEventListener('change', handleFiles, false);
+  Doc.keyfile = document.getElementById('is-art-keyfile')
+  Doc.keyfile.addEventListener('change', handleFiles, false)
 
-  Doc.form = document.getElementById('is-art-form');
-  Doc.form.addEventListener('submit', handleSubmit, false);
+  Doc.form = document.getElementById('is-art-form')
+  Doc.form.addEventListener('submit', handleSubmit, false)
 
-  Doc.submit = document.getElementById('is-art-submit');
+  Doc.submit = document.getElementById('is-art-submit')
 }
 
-async function main() {
-  initApp();
-  initDocument();
+async function main () {
+  initApp()
+  initDocument()
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-  await main();
-});
+  await main()
+})
