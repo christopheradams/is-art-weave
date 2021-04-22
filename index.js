@@ -47,7 +47,7 @@ async function writeContract () {
   return interactWrite
 }
 
-async function renderStatus (contractState) {
+function renderStatus (contractState) {
   if (contractState.isArt) {
     Doc.status.innerText = 'is'
   } else {
