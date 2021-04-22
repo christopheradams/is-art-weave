@@ -1,5 +1,4 @@
-import assert from 'assert';
-
+const assert = require('assert');
 const SmartweaveTester = require('smartweave-testing').default;
 const {handle} = require('../contracts/is-art');
 
