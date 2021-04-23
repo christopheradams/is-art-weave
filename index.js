@@ -14,10 +14,15 @@ const App = {
 }
 
 const Doc = {
+  error: null,
   form: null,
   keyfile: null,
   status: null,
   submit: null
+}
+
+function error(message) {
+  Doc.error.innerText = `Error: ${message}`
 }
 
 function log (message, data) {
@@ -94,13 +99,14 @@ function handleFiles () {
       log('Key file', inputFile.name)
     } catch (e) {
       log('Invalid key file', e)
+      error('Invalid key file')
     }
   })
 
   filereader.readAsText(inputFile)
 }
 
-function initApp () {
+async function initApp () {
   App.arweave = Arweave.init()
   App.arweave.network.getInfo().then((info) => {
     log('Artweave network', info.network)
@@ -109,7 +115,7 @@ function initApp () {
   App.contractId = import.meta.env.IS_ART_CONTRACT_ID
   log('Contract ID', App.contractId)
 
-  readStatus()
+  await readStatus()
   setInterval(readStatus, 60 * 1000)
 }
 
@@ -122,15 +128,20 @@ function initDocument () {
   Doc.form = document.getElementById('is-art-form')
   Doc.form.addEventListener('submit', handleSubmit, false)
 
+  Doc.error = document.getElementById('is-art-error')
   Doc.submit = document.getElementById('is-art-submit')
   Doc.tx = document.getElementById('is-art-tx')
 }
 
 async function main () {
-  initApp()
   initDocument()
+  await initApp()
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-  await main()
+  try {
+    await main()
+  } catch (e) {
+    error(e.message)
+  }
 })

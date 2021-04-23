@@ -41,6 +41,10 @@ body {
   margin-top: 2em;
 }
 
+#is-art-error {
+  color: #ab4642;
+}
+
 #is-art-keyfile {
   max-width: 90vw;
 }
