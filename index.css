@@ -11,16 +11,22 @@ body {
 }
 
 .container {
-  padding-top: 5vw;
-  padding-bottom: 2.5vw;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .row {
   margin: 0 5vw;
+  margin-bottom: 5vh;
+}
+
+.row:first-child {
+  flex: 1;
 }
 
 #is-art {
+  margin-top: 5vw;
   font-weight: 700;
   font-size: 5em;
   line-height: 0.875em;
