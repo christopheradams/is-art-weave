@@ -3,33 +3,30 @@
 import Arweave from 'arweave'
 import SmartWeave from 'smartweave'
 
+// State
+
 const App = {
   arweave: null,
   contractId: null,
   input: {
     function: 'toggle'
   },
-  tx: null,
   wallet: null
 }
 
-const Doc = {
-  error: null,
-  form: null,
-  keyfile: null,
-  status: null,
-  submit: null
-}
-
-function error(message) {
-  Doc.error.innerText = `Error: ${message}`
-}
+// Utils
 
 function log (message, data) {
   if (import.meta.env.MODE === 'development') {
     console.log(`[Is Art] ${message}:`, data)
   }
 }
+
+function listen (id, type, listener) {
+  document.getElementById(id).addEventListener(type, listener)
+}
+
+// Network
 
 async function readContract () {
   const contractState = await SmartWeave.readContract(
@@ -53,16 +50,24 @@ async function writeContract () {
   return interactWrite
 }
 
+// Rendering
+
 function renderStatus (contractState) {
+  const status = document.getElementById('is-art-status')
+
   if (contractState.isArt) {
-    Doc.status.innerText = 'is'
+    status.innerText = 'is'
   } else {
-    Doc.status.innerText = 'is not'
+    status.innerText = 'is not'
   }
 }
 
 function renderTransaction (txId) {
-  Doc.tx.innerText = txId
+  document.getElementById('is-art-tx').innerText = txId
+}
+
+function renderError (message) {
+  document.getElementById('is-art-error').innerText = `Error: ${message}`
 }
 
 async function readStatus () {
@@ -70,9 +75,14 @@ async function readStatus () {
   renderStatus(contractState)
 }
 
+// Listeners
+
 async function handleSubmit (event) {
   event.preventDefault()
-  Doc.submit.disabled = true
+
+  const submit = document.getElementById('is-art-submit')
+
+  submit.disabled = true
 
   if (window.confirm('Do you approve the transaction to be submitted?')) {
     renderTransaction('None')
@@ -81,7 +91,7 @@ async function handleSubmit (event) {
     renderTransaction(txId)
   }
 
-  Doc.submit.disabled = false
+  submit.disabled = false
 }
 
 function handleFiles () {
@@ -99,14 +109,19 @@ function handleFiles () {
       log('Key file', inputFile.name)
     } catch (e) {
       log('Invalid key file', e)
-      error('Invalid key file')
+      renderError('Invalid key file')
     }
   })
 
   filereader.readAsText(inputFile)
 }
 
-async function initApp () {
+// Main
+
+async function main () {
+  listen('is-art-keyfile', 'change', handleFiles)
+  listen('is-art-form', 'submit', handleSubmit)
+
   App.arweave = Arweave.init()
   App.arweave.network.getInfo().then((info) => {
     log('Artweave network', info.network)
@@ -119,29 +134,10 @@ async function initApp () {
   setInterval(readStatus, 60 * 1000)
 }
 
-function initDocument () {
-  Doc.status = document.getElementById('is-art-status')
-
-  Doc.keyfile = document.getElementById('is-art-keyfile')
-  Doc.keyfile.addEventListener('change', handleFiles, false)
-
-  Doc.form = document.getElementById('is-art-form')
-  Doc.form.addEventListener('submit', handleSubmit, false)
-
-  Doc.error = document.getElementById('is-art-error')
-  Doc.submit = document.getElementById('is-art-submit')
-  Doc.tx = document.getElementById('is-art-tx')
-}
-
-async function main () {
-  initDocument()
-  await initApp()
-}
-
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     await main()
   } catch (e) {
-    error(e.message)
+    renderError(e.message)
   }
 })
