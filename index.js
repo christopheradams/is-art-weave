@@ -107,6 +107,7 @@ async function handleSubmit (event) {
       }
     }
   } else {
+    document.getElementById('is-art-keyfile').value =''
     renderError('Missing or invalid keyfile')
   }
 
@@ -127,7 +128,6 @@ function handleFiles () {
 
       log('Key file', inputFile.name)
     } catch (e) {
-      // TODO: clear file input
       error('Invalid key file', e)
     }
   })
