@@ -16,7 +16,7 @@ const App = {
 
 // Utils
 
-function error(message, data) {
+function error (message, data) {
   renderError(message)
   console.error(message, data)
 }
@@ -107,7 +107,7 @@ async function handleSubmit (event) {
       }
     }
   } else {
-    document.getElementById('is-art-keyfile').value =''
+    document.getElementById('is-art-keyfile').value = ''
     renderError('Missing or invalid keyfile')
   }
 
