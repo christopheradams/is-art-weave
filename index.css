@@ -58,7 +58,7 @@ body {
   letter-spacing: 0.1em;
 }
 
-#is-art-tx,
+.is-art-form-text,
 .is-art-btn {
   font-family: monospace;
 }
