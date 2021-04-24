@@ -16,6 +16,11 @@ const App = {
 
 // Utils
 
+function error(message, data) {
+  renderError(message)
+  console.error(message, data)
+}
+
 function log (message, data) {
   if (import.meta.env.MODE === 'development') {
     console.log(`[Is Art] ${message}:`, data)
@@ -71,8 +76,13 @@ function renderError (message) {
 }
 
 async function readStatus () {
-  const contractState = await readContract()
-  renderStatus(contractState)
+  try {
+    const contractState = await readContract()
+    renderStatus(contractState)
+  } catch (e) {
+    renderError('Could not read contract')
+    console.error(e)
+  }
 }
 
 // Listeners
@@ -84,11 +94,20 @@ async function handleSubmit (event) {
 
   submit.disabled = true
 
-  if (window.confirm('Do you approve the transaction to be submitted?')) {
-    renderTransaction('None')
-    const txId = await writeContract()
-    log('Transaction ID', txId)
-    renderTransaction(txId)
+  if (App.wallet) {
+    if (window.confirm('Do you you want to submit the transaction?')) {
+      renderTransaction('None')
+
+      try {
+        const txId = await writeContract()
+        log('Transaction ID', txId)
+        renderTransaction(txId)
+      } catch (e) {
+        error('Could not write to the contract', e)
+      }
+    }
+  } else {
+    renderError('Missing or invalid keyfile')
   }
 
   submit.disabled = false
@@ -108,8 +127,8 @@ function handleFiles () {
 
       log('Key file', inputFile.name)
     } catch (e) {
-      log('Invalid key file', e)
-      renderError('Invalid key file')
+      // TODO: clear file input
+      error('Invalid key file', e)
     }
   })
 
@@ -138,6 +157,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   try {
     await main()
   } catch (e) {
-    renderError(e.message)
+    error(e.message, e)
   }
 })
