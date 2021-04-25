@@ -15,7 +15,7 @@ body {
 }
 
 .row {
-  margin: 0 5vw;
+  margin: 0 3vw;
   margin-bottom: 5vh;
 }
 
@@ -28,7 +28,7 @@ body {
 }
 
 #is-art {
-  margin-top: 5vw;
+  margin-top: 3vw;
   font-weight: 700;
   font-size: 5em;
   line-height: 0.875em;
