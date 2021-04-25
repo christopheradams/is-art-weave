@@ -84,6 +84,7 @@ async function fetchTransaction () {
 
       if (block) {
         confirmed = true
+        fetchStatus()
       }
 
       log('Latest Transaction ID', txId)
@@ -203,9 +204,6 @@ async function main () {
 
   App.contractId = import.meta.env.IS_ART_CONTRACT_ID
   log('Contract ID', App.contractId)
-
-  fetchStatus()
-  setInterval(fetchStatus, 60 * 1000)
 
   fetchTransaction()
   setInterval(fetchTransaction, 60 * 1000)
