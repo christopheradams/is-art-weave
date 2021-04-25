@@ -26,7 +26,6 @@
   },
   "dependencies": {
     "arweave": "^1.10.13",
-    "normalize.css": "^8.0.1",
     "smartweave": "^0.4.29",
     "util": "^0.12.3"
   }
