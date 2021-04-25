@@ -55,6 +55,33 @@ async function writeContract () {
   return interactWrite
 }
 
+async function readTransaction () {
+  const query = `{
+  transactions(first: 1, tags: [
+      {name: "App-Name", values: ["SmartWeaveAction"]},
+      {name: "Contract", values: ["${App.contractId}"]}
+    ]) {
+    edges {
+      node {
+        id
+      }
+    }
+  }
+}
+`
+
+  try {
+    const results = await App.arweave.api.post("/graphql", {query})
+    if (results.status == 200) {
+      const txId = results.data.data.transactions.edges[0].node.id
+      log('Latest Transaction ID', txId)
+      renderTransaction(txId)
+    }
+  } catch(e) {
+    console.error(e)
+  }
+}
+
 // Rendering
 
 function renderStatus (contractState) {
@@ -158,8 +185,11 @@ async function main () {
   App.contractId = import.meta.env.IS_ART_CONTRACT_ID
   log('Contract ID', App.contractId)
 
-  await readStatus()
+  readStatus()
   setInterval(readStatus, 60 * 1000)
+
+  readTransaction()
+  setInterval(readTransaction, 60 * 1000)
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
