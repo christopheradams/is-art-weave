@@ -14,7 +14,8 @@ module.exports = {
     /* ... */
   },
   plugins: [
-    ["@snowpack/plugin-dotenv"]
+    ['@snowpack/plugin-dotenv'],
+    ['@snowpack/plugin-webpack']
   ],
   packageOptions: {
     /* ... */
