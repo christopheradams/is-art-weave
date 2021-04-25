@@ -15,6 +15,7 @@ module.exports = {
   },
   plugins: [
     ['@snowpack/plugin-dotenv'],
+    ['@snowpack/plugin-postcss'],
     ['@snowpack/plugin-webpack']
   ],
   packageOptions: {
