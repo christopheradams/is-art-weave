@@ -55,7 +55,7 @@ async function writeContract () {
   return interactWrite
 }
 
-async function readTransaction () {
+async function fetchTransaction () {
   const query = `{
   transactions(first: 1, tags: [
       {name: "App-Name", values: ["SmartWeaveAction"]},
@@ -125,7 +125,7 @@ function clearError () {
   document.getElementById('is-art-error').innerText = ''
 }
 
-async function readStatus () {
+async function fetchStatus () {
   clearError()
   try {
     const contractState = await readContract()
@@ -204,11 +204,11 @@ async function main () {
   App.contractId = import.meta.env.IS_ART_CONTRACT_ID
   log('Contract ID', App.contractId)
 
-  readStatus()
-  setInterval(readStatus, 60 * 1000)
+  fetchStatus()
+  setInterval(fetchStatus, 60 * 1000)
 
-  readTransaction()
-  setInterval(readTransaction, 60 * 1000)
+  fetchTransaction()
+  setInterval(fetchTransaction, 60 * 1000)
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
