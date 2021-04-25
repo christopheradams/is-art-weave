@@ -91,6 +91,7 @@ async function fetchTransaction () {
       renderTransaction(txId, confirmed)
     }
   } catch (e) {
+    error('Cannot find contract transaction', e)
     console.error(e)
   }
 }
