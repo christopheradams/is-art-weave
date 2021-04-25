@@ -75,7 +75,12 @@ function renderError (message) {
   document.getElementById('is-art-error').innerText = `Error: ${message}`
 }
 
+function clearError () {
+  document.getElementById('is-art-error').innerText = ''
+}
+
 async function readStatus () {
+  clearError()
   try {
     const contractState = await readContract()
     renderStatus(contractState)
@@ -88,6 +93,7 @@ async function readStatus () {
 // Listeners
 
 async function handleSubmit (event) {
+  clearError()
   event.preventDefault()
 
   const submit = document.getElementById('is-art-submit')
@@ -115,6 +121,8 @@ async function handleSubmit (event) {
 }
 
 function handleFiles () {
+  clearError()
+
   const filereader = new FileReader()
 
   const inputFile = this.files[0]
