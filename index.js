@@ -63,7 +63,10 @@ async function readTransaction () {
     ]) {
     edges {
       node {
-        id
+        id,
+        block {
+          id
+        }
       }
     }
   }
@@ -74,8 +77,17 @@ async function readTransaction () {
     const results = await App.arweave.api.post("/graphql", {query})
     if (results.status == 200) {
       const txId = results.data.data.transactions.edges[0].node.id
+
+      const block = results.data.data.transactions.edges[0].node.block
+      console.log(results.data.data)
+      let confirmed = false
+
+      if (block) {
+        confirmed = true
+      }
+
       log('Latest Transaction ID', txId)
-      renderTransaction(txId)
+      renderTransaction(txId, confirmed)
     }
   } catch(e) {
     console.error(e)
@@ -94,8 +106,15 @@ function renderStatus (contractState) {
   }
 }
 
-function renderTransaction (txId) {
+function renderTransaction (txId, confirmed = false) {
   document.getElementById('is-art-tx').innerText = txId
+  const confirmedElem = document.getElementById('is-art-tx-confirmation')
+
+  if (confirmed) {
+    confirmedElem.innerText = "(confirmed)"
+  } else {
+    confirmedElem.innerText = "(unconfirmed)"
+  }
 }
 
 function renderError (message) {
