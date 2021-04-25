@@ -203,7 +203,7 @@ async function main () {
     log('Artweave network', info.network)
   })
 
-  App.contractId = import.meta.env.IS_ART_CONTRACT_ID
+  App.contractId = import.meta.env.SNOWPACK_PUBLIC_IS_ART_CONTRACT_ID
   log('Contract ID', App.contractId)
 
   fetchTransaction()

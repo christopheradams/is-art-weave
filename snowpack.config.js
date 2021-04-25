@@ -3,9 +3,6 @@
 
 /** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
-  env: {
-    IS_ART_CONTRACT_ID: 'PiM6NAml7owLgLkGafrfT662rkBh0n_PD7ltEEpI3aw'
-  },
   exclude: [
     '**/contracts/**/*',
     '**/LICENSE',
@@ -17,7 +14,7 @@ module.exports = {
     /* ... */
   },
   plugins: [
-    /* ... */
+    ["@snowpack/plugin-dotenv"]
   ],
   packageOptions: {
     /* ... */
