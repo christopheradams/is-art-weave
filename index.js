@@ -122,6 +122,7 @@ async function handleSubmit (event) {
 
 function handleFiles () {
   clearError()
+  App.wallet = null
 
   const filereader = new FileReader()
 
