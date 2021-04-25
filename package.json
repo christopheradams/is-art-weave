@@ -11,6 +11,7 @@
   "author": "Christopher Adams",
   "license": "MIT",
   "devDependencies": {
+    "@snowpack/plugin-dotenv": "^2.1.0",
     "esm": "^3.2.25",
     "mocha": "^8.3.2",
     "smartweave-testing": "^0.2.0",
