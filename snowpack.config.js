@@ -8,6 +8,7 @@ module.exports = {
   },
   exclude: [
     '**/contracts/**/*',
+    '**/LICENSE',
     '**/package*.json',
     '**/README.md',
     '**/snowpack.config.js'

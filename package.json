@@ -9,7 +9,7 @@
     "test": "standard && mocha --require esm"
   },
   "author": "Christopher Adams",
-  "license": "GPL-3.0-or-later",
+  "license": "MIT",
   "devDependencies": {
     "esm": "^3.2.25",
     "mocha": "^8.3.2",
