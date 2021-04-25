@@ -94,6 +94,8 @@ async function readStatus () {
 
 async function handleSubmit (event) {
   clearError()
+  renderTransaction('None')
+
   event.preventDefault()
 
   const submit = document.getElementById('is-art-submit')
@@ -102,8 +104,6 @@ async function handleSubmit (event) {
 
   if (App.wallet) {
     if (window.confirm('Do you you want to submit the transaction?')) {
-      renderTransaction('None')
-
       try {
         const txId = await writeContract()
         log('Transaction ID', txId)
