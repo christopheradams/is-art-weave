@@ -79,7 +79,7 @@ async function fetchTransaction () {
       const txId = results.data.data.transactions.edges[0].node.id
 
       const block = results.data.data.transactions.edges[0].node.block
-      console.log(results.data.data)
+
       let confirmed = false
 
       if (block) {
