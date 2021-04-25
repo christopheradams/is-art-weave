@@ -33,6 +33,8 @@ npm run start
 
 ```sh
 npx smartweave create contracts/is-art.js contracts/is-art.json --key-file [YOUR KEYFILE]
+echo "SNOWPACK_PUBLIC_IS_ART_CONTRACT_ID=[CONTRACT_ID]" > .env.production
+npm run build
 ```
 
 [Arweave]: https://www.arweave.org/
