@@ -6,7 +6,7 @@ CSS).
 *Is Art* is a minimal, interactive artistic statement. Each interaction
 can change the work's self-definition as *art* or *not art*.
 
-*Is Art* is a smart contract and distributed application on the
+*Is Art* is a smart contract and distributed application for the
 [Arweave] network. It is an adaptation of [Rhea Myers]'s original work
 for Ethereum.
 
