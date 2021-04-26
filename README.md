@@ -10,9 +10,9 @@ art*. All interactions with the contract are recorded permanently.
 
 Transacting with the work requires an [Arweave wallet] and a small fee.
 
-The [source code] is available for free under the MIT license. It includes
-a SmartWeave contract with tests, and a JavaScript application that
-reads from, queries, and writes to the Arweave network.
+The [source code] is available under a free license. It includes a
+SmartWeave contract with tests, and a JavaScript application that reads
+from, queries, and writes to the Arweave network.
 
 ## Requirements
 
