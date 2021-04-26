@@ -60,6 +60,14 @@ body {
   font-family: monospace;
 }
 
+details summary {
+  cursor: pointer;
+}
+
+details summary > * {
+  display: inline;
+}
+
 fieldset {
   min-width: 0;
   padding: 0;
