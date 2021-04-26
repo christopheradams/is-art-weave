@@ -8,7 +8,8 @@ of the same name on the Ethereum network.
 transaction can toggle the work's self-definition as *art* or *not
 art*. All interactions with the contract are recorded permanently.
 
-Transacting with the work requires an [Arweave wallet] and a small fee.
+Interacting with the work requires an [Arweave wallet] to pay a
+transaction fee.
 
 The [source code] is available under a free license. It includes a
 SmartWeave contract with tests, and a JavaScript application that reads
