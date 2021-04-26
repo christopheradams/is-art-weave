@@ -17,22 +17,26 @@ The [source code] is available under a free license. It includes a
 SmartWeave contract with tests, and a JavaScript application that reads
 from, queries, and writes to the Arweave network.
 
-## Requirements
+## Instructions
+
+### Requirements
 
 * Node.js
+
+### Installation
 
 ```sh
 npm install
 ```
 
-## Development
+### Development
 
 ```sh
 npm test
 npm run start
 ```
 
-## Production
+### Production
 
 Deploy the contract:
 
