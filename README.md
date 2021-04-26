@@ -1,15 +1,17 @@
 # "Is Art" on Artweave
 
+Christopher Adams, *Is Art*, 2021.  Custom software (JavaScript, HTML,
+CSS).
+
+*Is Art* is a minimal, interactive artistic statement. Each interaction
+can change the work's self-definition as *art* or *not art*. All
+transactions are recorded permanently.
+
 *Is Art* is a smart contract and distributed application on the
 [Arweave] network. It is an adaptation of [Rhea Myers]'s original work
-of the same name for Ethereum.
+for Ethereum.
 
-*Is Art* is a minimal, interactive artistic statement. A single
-transaction can toggle the work's self-definition as *art* or *not
-art*. All interactions with the contract are recorded permanently.
-
-Interacting with the work requires an [Arweave wallet] to pay a
-transaction fee.
+Transacting with the work requires an [Arweave wallet] to pay a fee.
 
 The [source code] is available under a free license. It includes a
 SmartWeave contract with tests, and a JavaScript application that reads
@@ -60,5 +62,5 @@ The file `dist/index.html` can be deployed anywhere as a standalone web app.
 
 [Arweave]: https://www.arweave.org/
 [Arweave wallet]: https://faucet.arweave.net/
-[Rhea Myers]: https://rhea.art/
+[Rhea Myers]: https://rhea.art/is-art
 [source code]: https://github.com/christopheradams/is-art-weave
