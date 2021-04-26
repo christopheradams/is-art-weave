@@ -132,6 +132,10 @@ async function fetchTransaction () {
 
 // Rendering
 
+function renderVersion (version) {
+  document.getElementById('is-art-version').innerText = `Version ${version}.`
+}
+
 function renderStatus (contractState) {
   const status = document.getElementById('is-art-status')
 
@@ -244,6 +248,8 @@ async function main () {
 
   fetchTransaction()
   setInterval(fetchTransaction, 60 * 1000)
+
+  renderVersion(VERSION)
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
