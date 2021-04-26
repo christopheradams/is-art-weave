@@ -7,6 +7,7 @@ module.exports = {
     '**/contracts/**/*',
     '**/LICENSE',
     '**/package*.json',
+    '**/postcss.config.js',
     '**/README.md',
     '**/snowpack.config.js'
   ],
