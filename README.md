@@ -2,7 +2,7 @@
 
 *Is Art* is a smart contract and distributed application on the
 [Arweave] network. It is an adaptation of [Rhea Myers]'s original work
-of the same name on the Ethereum network.
+of the same name for Ethereum.
 
 *Is Art* is a minimal, interactive artistic statement. A single
 transaction can toggle the work's self-definition as *art* or *not
