@@ -3,16 +3,49 @@
 import Arweave from 'arweave'
 import SmartWeave from 'smartweave'
 
-// State
+// Env
 
-const App = {
-  arweave: null,
-  contractId: null,
-  input: {
+const CONTRACT_ID = import.meta.env.SNOWPACK_PUBLIC_IS_ART_CONTRACT_ID
+
+// Store
+
+const App = (() => {
+  let _arweave = null
+  let _contract = null
+  let _wallet = null
+
+  const _input = {
     function: 'toggle'
-  },
-  wallet: null
-}
+  }
+
+  const Store = {
+    init: (contract) => {
+      _arweave = Arweave.init()
+      _contract = contract
+    },
+    arweave: () => {
+      return _arweave
+    },
+    contract: () => {
+      return _contract
+    },
+    input: () => {
+      return _input
+    },
+    wallet: () => {
+      return _wallet
+    },
+    setWallet: (wallet) => {
+      _wallet = wallet
+    },
+    clearWallet: () => {
+      _wallet = null
+      return true
+    }
+  }
+
+  return Object.freeze(Store)
+})()
 
 // Utils
 
@@ -35,8 +68,8 @@ function listen (id, type, listener) {
 
 async function readContract () {
   const contractState = await SmartWeave.readContract(
-    App.arweave,
-    App.contractId
+    App.arweave(),
+    App.contract()
   )
 
   log('Contract State', contractState)
@@ -46,10 +79,10 @@ async function readContract () {
 
 async function writeContract () {
   const interactWrite = await SmartWeave.interactWrite(
-    App.arweave,
-    App.wallet,
-    App.contractId,
-    App.input
+    App.arweave(),
+    App.wallet(),
+    App.contract(),
+    App.input()
   )
 
   return interactWrite
@@ -59,7 +92,7 @@ async function fetchTransaction () {
   const query = `{
   transactions(first: 1, tags: [
       {name: "App-Name", values: ["SmartWeaveAction"]},
-      {name: "Contract", values: ["${App.contractId}"]}
+      {name: "Contract", values: ["${App.contract()}"]}
     ]) {
       edges {
         node {
@@ -74,7 +107,7 @@ async function fetchTransaction () {
   `
 
   try {
-    const results = await App.arweave.api.post('/graphql', { query })
+    const results = await App.arweave().api.post('/graphql', { query })
     if (results.status === 200) {
       const txId = results.data.data.transactions.edges[0].node.id
 
@@ -150,7 +183,7 @@ async function handleSubmit (event) {
 
   submit.disabled = true
 
-  if (App.wallet) {
+  if (App.wallet()) {
     if (window.confirm('Do you you want to submit the transaction?')) {
       try {
         const txId = await writeContract()
@@ -170,7 +203,7 @@ async function handleSubmit (event) {
 
 function handleFiles () {
   clearError()
-  App.wallet = null
+  App.clearWallet()
 
   const filereader = new FileReader()
 
@@ -178,8 +211,9 @@ function handleFiles () {
 
   filereader.addEventListener('load', (event) => {
     try {
-      App.wallet = JSON.parse(event.target.result)
-      App.arweave.wallets.jwkToAddress(App.wallet).then((address) => {
+      const wallet = JSON.parse(event.target.result)
+      App.setWallet(wallet)
+      App.arweave().wallets.jwkToAddress(App.wallet()).then((address) => {
         log('Wallet', address)
       })
 
@@ -198,13 +232,12 @@ async function main () {
   listen('is-art-keyfile', 'change', handleFiles)
   listen('is-art-form', 'submit', handleSubmit)
 
-  App.arweave = Arweave.init()
-  App.arweave.network.getInfo().then((info) => {
+  App.init(CONTRACT_ID)
+  log('Contract ID', App.contract())
+
+  App.arweave().network.getInfo().then((info) => {
     log('Artweave network', info.network)
   })
-
-  App.contractId = import.meta.env.SNOWPACK_PUBLIC_IS_ART_CONTRACT_ID
-  log('Contract ID', App.contractId)
 
   fetchTransaction()
   setInterval(fetchTransaction, 60 * 1000)
