@@ -71,6 +71,12 @@ fieldset {
   margin-top: 2em;
 }
 
+@media screen and (min-width: 660px) {
+  #is-art-details {
+    max-width: 660px;
+  }
+}
+
 @media screen and (min-width: 1000px) {
   #is-art {
     font-size: 8vw;
