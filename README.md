@@ -55,6 +55,8 @@ Create a package (optional):
 npm run package
 ```
 
+The file `dist/index.html` can be deployed anywhere as a standalone web app.
+
 [Arweave]: https://www.arweave.org/
 [Arweave wallet]: https://faucet.arweave.net/
 [Rhea Myers]: https://rhea.art/
