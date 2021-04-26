@@ -10,7 +10,7 @@ art*. All interactions with the contract are recorded permanently.
 
 Transacting with the work requires an [Arweave wallet] and a small fee.
 
-The source code is available for free under the MIT license. It includes
+The [source code] is available for free under the MIT license. It includes
 a SmartWeave contract with tests, and a JavaScript application that
 reads from, queries, and writes to the Arweave network.
 
@@ -40,3 +40,4 @@ npm run build
 [Arweave]: https://www.arweave.org/
 [Arweave wallet]: https://faucet.arweave.net/
 [Rhea Myers]: https://rhea.art/
+[source code]: https://github.com/christopheradams/is-art-weave
