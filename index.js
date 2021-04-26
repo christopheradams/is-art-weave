@@ -61,17 +61,17 @@ async function fetchTransaction () {
       {name: "App-Name", values: ["SmartWeaveAction"]},
       {name: "Contract", values: ["${App.contractId}"]}
     ]) {
-    edges {
-      node {
-        id,
-        block {
-          id
+      edges {
+        node {
+          id,
+          block {
+            id
+          }
         }
       }
     }
   }
-}
-`
+  `
 
   try {
     const results = await App.arweave.api.post('/graphql', { query })
