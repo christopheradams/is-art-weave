@@ -1,8 +1,13 @@
 // Snowpack Configuration File
 // See all supported options: https://www.snowpack.dev/reference/configuration
 
+const pkg = require('./package.json');
+
 /** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
+  env: {
+    SNOWPACK_PUBLIC_IS_ART_VERSION: pkg.version
+  },
   exclude: [
     '**/contracts/**/*',
     '**/LICENSE',
