@@ -42,6 +42,25 @@ body {
   transition: all 0.5s;
 }
 
+#is-art-details p {
+  font-weight: 300;
+}
+
+details summary {
+  cursor: pointer;
+}
+
+details summary > * {
+  display: inline;
+}
+
+fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
 #is-art-keyfile {
   max-width: 90vw;
 }
@@ -58,21 +77,6 @@ body {
 .is-art-form-text,
 .is-art-btn {
   font-family: monospace;
-}
-
-details summary {
-  cursor: pointer;
-}
-
-details summary > * {
-  display: inline;
-}
-
-fieldset {
-  min-width: 0;
-  padding: 0;
-  margin: 0;
-  border: 0;
 }
 
 .is-art-form-group {
