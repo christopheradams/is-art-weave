@@ -1,3 +1,4 @@
 .env.production
 build
+dist
 node_modules
