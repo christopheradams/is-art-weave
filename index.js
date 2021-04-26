@@ -6,6 +6,7 @@ import SmartWeave from 'smartweave'
 // Env
 
 const CONTRACT_ID = import.meta.env.SNOWPACK_PUBLIC_IS_ART_CONTRACT_ID
+const VERSION = import.meta.env.SNOWPACK_PUBLIC_IS_ART_VERSION
 
 // Store
 
@@ -229,6 +230,8 @@ function handleFiles () {
 // Main
 
 async function main () {
+  log('Version', VERSION)
+
   listen('is-art-keyfile', 'change', handleFiles)
   listen('is-art-form', 'submit', handleSubmit)
 
