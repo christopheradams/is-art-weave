@@ -1,7 +1,7 @@
 // Snowpack Configuration File
 // See all supported options: https://www.snowpack.dev/reference/configuration
 
-const pkg = require('./package.json');
+const pkg = require('./package.json')
 
 /** @type {import("snowpack").SnowpackUserConfig } */
 module.exports = {
