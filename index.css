@@ -36,11 +36,6 @@ body {
   text-decoration: underline;
 }
 
-#is-art-form {
-  margin-left: 1vw;
-  margin-top: 2em;
-}
-
 #is-art-error {
   color: #ab4642;
   opacity: 1;
@@ -65,8 +60,14 @@ body {
   font-family: monospace;
 }
 
-.is-art-form-group {
+fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
   border: 0;
+}
+
+.is-art-form-group {
   margin-top: 2em;
 }
 
