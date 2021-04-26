@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "snowpack build --polyfill-node",
+    "package": "arweave package build/index.html dist/index.html",
     "start": "snowpack dev",
     "test": "standard && mocha --require esm"
   },
