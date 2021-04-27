@@ -7,6 +7,7 @@ import SmartWeave from 'smartweave'
 
 const CONTRACT_ID = import.meta.env.SNOWPACK_PUBLIC_IS_ART_CONTRACT_ID
 const VERSION = import.meta.env.SNOWPACK_PUBLIC_IS_ART_VERSION
+const SET_OPTIONS = import.meta.env.SNOWPACK_PUBLIC_IS_ART_HARDCODE_ARWEAVE === "true"
 
 // Store
 
@@ -29,7 +30,12 @@ const App = (() => {
 
   const Store = {
     init: (contract) => {
-      _arweave = Arweave.init(_options)
+      if (SET_OPTIONS) {
+        _arweave = Arweave.init(_options)
+      } else {
+        _arweave = Arweave.init()
+      }
+
       _contract = contract
     },
     arweave: () => {
