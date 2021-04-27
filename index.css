@@ -53,6 +53,14 @@ a:visited {
   font-weight: 300;
 }
 
+#is-art-details .is-art-artwork {
+  font-weight: 400;
+}
+
+.is-art-title {
+  font-style: italic;
+}
+
 details summary {
   cursor: pointer;
 }
