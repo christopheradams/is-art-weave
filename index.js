@@ -126,8 +126,9 @@ async function fetchTransaction () {
 
       if (block) {
         confirmed = true
-        fetchStatus()
       }
+
+      fetchStatus()
 
       log('Latest Transaction ID', txId)
       renderTransaction(txId, confirmed)
