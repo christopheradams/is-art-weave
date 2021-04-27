@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+  color: #212529;
+  background-color: #f4f5f6;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 16px;
+}
+
+a,
+a:focus,
+a:visited {
+  color: #212529;
+  text-decoration: underline;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.row {
+  margin: 0 3vw;
+  margin-bottom: 5vh;
+}
+
+.row:first-child {
+  flex: 1;
+}
+
+.hide {
+  opacity: 0;
+}
+
+#is-art {
+  margin-top: 3vw;
+  font-weight: 700;
+  font-size: 5em;
+  line-height: 0.875em;
+}
+
+#is-art-status {
+  text-decoration: underline;
+}
+
+#is-art-error {
+  color: #ab4642;
+  opacity: 1;
+  transition: all 0.5s;
+}
+
+#is-art-details p {
+  font-weight: 300;
+}
+
+#is-art-details .is-art-artwork {
+  font-weight: 400;
+}
+
+.is-art-title {
+  font-style: italic;
+}
+
+details summary {
+  cursor: pointer;
+}
+
+details summary > * {
+  display: inline;
+}
+
+fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+#is-art-keyfile {
+  max-width: 90vw;
+}
+
+.is-art-label {
+  color: #444c55;
+  margin: 0.3125em 0;
+  display: block;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  letter-spacing: 0.1em;
+}
+
+.is-art-form-text,
+.is-art-btn {
+  font-family: monospace;
+}
+
+.is-art-form-group {
+  margin-top: 2em;
+}
+
+@media screen and (min-width: 660px) {
+  #is-art-details {
+    max-width: 660px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  #is-art {
+    font-size: 8vw;
+  }
+}

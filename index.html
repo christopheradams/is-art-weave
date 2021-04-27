@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Is Art</title>
+  <meta name="description" content="Arweave contract that is or isn't art">
+  <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" rel="icon" type="image/x-icon" />
+  <link rel="stylesheet" type="text/css" href="./index.css" />
+  <script type="module" src="./index.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div id="is-art">
+        This contract
+        <span id="is-art-status">may be</span>
+        art.
+      </div>
+    </div>
+    <div class="row">
+      <details id="is-art-details" vocab="https://schema.org/" typeof="VisualArtwork">
+        <summary>About</summary>
+        <p class="is-art-info">
+          <span class="is-art-artwork">
+            <span property="artist" typeof="Person">
+              <span property="name">Christopher Adams</span>,
+            </span>
+            <span class="is-art-title" property="name">Is Art</span>,
+            <span property="dateCreated">2021</span>.
+          </span>
+          <span property="artform">Custom software</span>
+          (<span property="artMedium">JavaScript, HTML, CSS</span>).
+        </p>
+        <p><span class="is-art-title">Is Art</span> is a minimal, interactive artistic statement. Each interaction can change the work's self-definition as <em>art</em> or <em>not art</em>.</p>
+        <p><span class="is-art-title">Is Art</span> is a smart contract and distributed application for the <a href="https://www.arweave.org/">Arweave</a> network. It is an adaptation of <a href="https://rhea.art/is-art">Rhea Myers</a>'s original work for Ethereum.</p>
+        <p>Transacting with the work requires an <a href="https://faucet.arweave.net/">Arweave wallet</a> to pay a minimal fee.</p>
+        <p>The <a href="https://github.com/christopheradams/is-art-weave">source code</a> is available under a free license.</p>
+        <p>Select an Arweave key file, click the "Change" button, approve the transaction, and wait for confirmation. The page will update its state automatically.</p>
+        <p id="is-art-version"></p>
+      </details>
+      <form id="is-art-form" action="" method="get">
+        <div id="is-art-error">
+        </div>
+        <fieldset id="is-art-keyfile-group" class="is-art-form-group">
+          <label for="is-art-keyfile" class="is-art-label">An Arweave key file</label>
+          <input class="is-art-btn" id="is-art-keyfile" type="file" accept="application/json" required>
+        </fieldset>
+        <fieldset class="is-art-form-group">
+          <label for="is-art-submit" class="is-art-label">The contract is or is not art</label>
+          <input class="is-art-btn" id="is-art-submit" type="submit" value="Change">
+        </fieldset>
+        <fieldset id="is-art-tx-group" class="is-art-form-group">
+          <label for="is-art-tx" class="is-art-label">
+            Latest Transaction
+            <span id="is-art-tx-confirmation" class="is-art-form-text">
+            </span>
+          </label>
+          <span id="is-art-tx" class="is-art-form-text">
+            None
+          </span>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
