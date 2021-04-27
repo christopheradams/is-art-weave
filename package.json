@@ -4,6 +4,7 @@
   "description": "Is Art for Artweave",
   "main": "index.js",
   "scripts": {
+    "create": "smartweave create contracts/is-art.js contracts/is-art.json",
     "build": "snowpack build --polyfill-node",
     "package": "arweave package build/index.html dist/index.html",
     "start": "snowpack dev",
