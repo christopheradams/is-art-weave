@@ -38,10 +38,12 @@ npm run start
 
 ### Production
 
-Deploy the contract:
+#### Contract
+
+Deploy the contract using your Arweave keyfile:
 
 ```sh
-npx smartweave create contracts/is-art.js contracts/is-art.json --key-file [YOUR KEYFILE]
+npm run create -- --key-file=/home/${USER}/path/to/arweave-key.json
 ```
 
 Set the contract ID from the previous step:
@@ -50,13 +52,30 @@ Set the contract ID from the previous step:
 echo "SNOWPACK_PUBLIC_IS_ART_CONTRACT_ID=[CONTRACT_ID]" > .env.production
 ```
 
+#### Deploying on Arweave
+
 Build the site:
 
 ```sh
 npm run build
 ```
 
-Create a package (optional):
+Deploy the site:
+
+```sh
+npx arweave deploy build/index.html --key-file path/to/arweave-key.json --package
+```
+
+#### Deploying on a webserver
+
+Build the site hard-coded to use the `arweave.net` server no matter
+where it's deployed:
+
+```sh
+SNOWPACK_PUBLIC_IS_ART_HARDCODE_ARWEAVE=true npm run build
+```
+
+Create a package:
 
 ```sh
 npm run package
