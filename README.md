@@ -1,1 +1,1 @@
-# "Is Art" on Artweave
+# "Is Art" on Arweave
