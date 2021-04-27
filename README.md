@@ -1,5 +1,7 @@
 # "Is Art" on Artweave
 
+![Screenshot](/screenshot.png?raw=true)
+
 Christopher Adams, *Is Art*, 2021.  Custom software (JavaScript, HTML,
 CSS).
 

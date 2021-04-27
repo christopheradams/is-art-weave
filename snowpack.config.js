@@ -15,6 +15,7 @@ module.exports = {
     '**/package*.json',
     '**/postcss.config.js',
     '**/README.md',
+    '**/screenshot.png',
     '**/snowpack.config.js'
   ],
   mount: {
