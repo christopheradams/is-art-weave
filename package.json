@@ -1,0 +1,31 @@
+{
+  "name": "is-art-weave",
+  "version": "0.0.1",
+  "description": "Is Art for Arweave",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Christopher Adams",
+  "license": "MIT",
+  "devDependencies": {
+    "@snowpack/plugin-dotenv": "^2.1.0",
+    "@snowpack/plugin-postcss": "^1.2.2",
+    "@snowpack/plugin-webpack": "^2.3.1",
+    "arweave-deploy": "^1.9.1",
+    "cssnano": "^4.1.11",
+    "esm": "^3.2.25",
+    "mocha": "^8.3.2",
+    "postcss": "^7.0.35",
+    "postcss-preset-env": "^6.7.0",
+    "smartweave-testing": "^0.2.0",
+    "snowpack": "^3.3.0",
+    "standard": "^16.0.3",
+    "testweave-sdk": "^0.2.2"
+  },
+  "dependencies": {
+    "arweave": "^1.10.13",
+    "smartweave": "^0.4.29",
+    "util": "^0.12.3"
+  }
+}
