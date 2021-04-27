@@ -7,7 +7,7 @@ import SmartWeave from 'smartweave'
 
 const CONTRACT_ID = import.meta.env.SNOWPACK_PUBLIC_IS_ART_CONTRACT_ID
 const VERSION = import.meta.env.SNOWPACK_PUBLIC_IS_ART_VERSION
-const SET_OPTIONS = import.meta.env.SNOWPACK_PUBLIC_IS_ART_HARDCODE_ARWEAVE === "true"
+const SET_OPTIONS = import.meta.env.SNOWPACK_PUBLIC_IS_ART_HARDCODE_ARWEAVE === 'true'
 
 // Store
 
