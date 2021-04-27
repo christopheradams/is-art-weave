@@ -19,9 +19,17 @@ const App = (() => {
     function: 'toggle'
   }
 
+  const _options = {
+    host: 'arweave.net',
+    port: 443,
+    protocol: 'https',
+    timeout: 20000,
+    logging: false
+  }
+
   const Store = {
     init: (contract) => {
-      _arweave = Arweave.init()
+      _arweave = Arweave.init(_options)
       _contract = contract
     },
     arweave: () => {
