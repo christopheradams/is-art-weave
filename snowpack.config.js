@@ -10,6 +10,7 @@ module.exports = {
   },
   exclude: [
     '**/contracts/**/*',
+    '**/dist/**/*',
     '**/LICENSE',
     '**/package*.json',
     '**/postcss.config.js',
