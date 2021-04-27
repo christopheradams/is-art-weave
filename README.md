@@ -1,4 +1,4 @@
-# "Is Art" on Artweave
+# "Is Art" on Arweave
 
 ![Screenshot](/screenshot.png?raw=true)
 
