@@ -63,7 +63,7 @@ npm run build
 Deploy the site:
 
 ```sh
-npx arweave deploy build/index.html --key-file path/to/arweave-key.json --package
+npm run deploy -- --key-file=/home/${USER}/path/to/arweave-key.json
 ```
 
 #### Deploying on a webserver
