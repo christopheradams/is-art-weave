@@ -4,6 +4,11 @@
   "description": "Is Art for Arweave",
   "main": "index.js",
   "scripts": {
+    "create": "smartweave create contracts/is-art.js contracts/is-art.json",
+    "deploy": "arweave deploy build/index.html --package",
+    "build": "snowpack build --polyfill-node",
+    "package": "arweave package build/index.html dist/index.html",
+    "start": "snowpack dev",
     "test": "standard && mocha --require esm"
   },
   "author": "Christopher Adams",
