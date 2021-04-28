@@ -7,17 +7,17 @@ const { handle } = require('../contracts/is-art')
 const caller = 'MlV6DeOtRmakDOf6vgOBlif795tcWimgyPsYYNQ8q1Y' // testWeave.rootJWK
 
 const state = { isArt: false }
-const input = { function: 'toggle' }
+const toggle = { function: 'toggle' }
 
 describe('is-art', () => {
   describe('toggle', () => {
     it('toggles art and not art', async () => {
       const smartweave = new SmartweaveTester(handle, state, caller)
 
-      const art = await smartweave.execute(input)
+      const art = await smartweave.execute(toggle)
       assert.equal(art.isArt, true)
 
-      const notart = await smartweave.execute(input)
+      const notart = await smartweave.execute(toggle)
       assert.equal(notart.isArt, false)
     })
   })
