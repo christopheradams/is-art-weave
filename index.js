@@ -16,10 +16,6 @@ const App = (() => {
   let _contract = null
   let _wallet = null
 
-  const _input = {
-    function: 'toggle'
-  }
-
   const _options = {
     host: 'arweave.net',
     port: 443,
@@ -44,8 +40,10 @@ const App = (() => {
     contract: () => {
       return _contract
     },
-    input: () => {
-      return _input
+    input: (method) => {
+      return {
+        function: method
+      }
     },
     wallet: () => {
       return _wallet
@@ -92,12 +90,12 @@ async function readContract () {
   return contractState
 }
 
-async function writeContract () {
+async function writeContract (method) {
   const interactWrite = await SmartWeave.interactWrite(
     App.arweave(),
     App.wallet(),
     App.contract(),
-    App.input()
+    App.input(method)
   )
 
   return interactWrite
@@ -209,7 +207,7 @@ async function handleSubmit (event) {
   if (App.wallet()) {
     if (window.confirm('Do you you want to submit the transaction?')) {
       try {
-        const txId = await writeContract()
+        const txId = await writeContract('toggle')
         log('Transaction ID', txId)
         renderTransaction(txId)
       } catch (e) {
