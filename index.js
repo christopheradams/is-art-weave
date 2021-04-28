@@ -90,6 +90,19 @@ async function readContract () {
   return contractState
 }
 
+async function interactReadContract (method) {
+  const contractResults = await SmartWeave.interactRead(
+    App.arweave(),
+    App.wallet(),
+    App.contract(),
+    App.input(method)
+  )
+
+  log('Contract Results', contractResults)
+
+  return contractResults
+}
+
 async function writeContract (method) {
   const interactWrite = await SmartWeave.interactWrite(
     App.arweave(),
@@ -184,6 +197,10 @@ function clearError () {
 async function fetchStatus () {
   clearError()
   try {
+    if (App.wallet()) {
+      interactReadContract('statement')
+    }
+
     const contractState = await readContract()
     renderStatus(contractState)
   } catch (e) {
