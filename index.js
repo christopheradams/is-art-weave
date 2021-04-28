@@ -124,20 +124,23 @@ async function fetchTransaction () {
   try {
     const results = await App.arweave().api.post('/graphql', { query })
     if (results.status === 200) {
-      const txId = results.data.data.transactions.edges[0].node.id
+      const edges = results.data.data.transactions.edges
 
-      const block = results.data.data.transactions.edges[0].node.block
+      if (edges.length > 0) {
+        const txId = edges[0].node.id
+        const block = edges[0].node.block
 
-      let confirmed = false
+        let confirmed = false
 
-      if (block) {
-        confirmed = true
+        if (block) {
+          confirmed = true
+        }
+
+        log('Latest Transaction ID', txId)
+        renderTransaction(txId, confirmed)
       }
 
       fetchStatus()
-
-      log('Latest Transaction ID', txId)
-      renderTransaction(txId, confirmed)
     }
   } catch (e) {
     error('Cannot find contract transaction', e)
