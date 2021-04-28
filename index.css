@@ -45,8 +45,6 @@ a:visited {
 
 #is-art-error {
   color: #ab4642;
-  opacity: 1;
-  transition: all 0.5s;
 }
 
 #is-art-details p {
