@@ -1,6 +1,6 @@
 {
   "name": "is-art-weave",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Is Art for Arweave",
   "main": "index.js",
   "scripts": {
