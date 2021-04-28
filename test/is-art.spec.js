@@ -6,8 +6,12 @@ const { handle } = require('../contracts/is-art')
 
 const caller = 'MlV6DeOtRmakDOf6vgOBlif795tcWimgyPsYYNQ8q1Y' // testWeave.rootJWK
 
-const state = { isArt: false }
+const isArt = { isArt: true }
+const isNotArt = { isArt: false }
+const state = isNotArt
+
 const toggle = { function: 'toggle' }
+const statement = { function: 'statement' }
 
 describe('is-art', () => {
   describe('toggle', () => {
@@ -19,6 +23,16 @@ describe('is-art', () => {
 
       const notart = await smartweave.execute(toggle)
       assert.equal(notart.isArt, false)
+    })
+  })
+
+  describe('statement', async () => {
+    it('makes statements about art and not art', async () => {
+      const art = handle(isArt, { caller, input: statement })
+      assert.equal(art.result, 'This contract is art')
+
+      const notart = handle(isNotArt, { caller, input: statement })
+      assert.equal(notart.result, 'This contract is not art')
     })
   })
 

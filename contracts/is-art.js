@@ -7,5 +7,15 @@ export function handle (state, action) {
     return { state }
   }
 
+  if (action.input.function === 'statement') {
+    let statement = 'is not'
+
+    if (state.isArt) {
+      statement = 'is'
+    }
+
+    return { result: `This contract ${statement} art` }
+  }
+
   throw new ContractError('Invalid input')
 }
