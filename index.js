@@ -149,7 +149,8 @@ async function fetchTransaction () {
 // Rendering
 
 function renderVersion (version) {
-  document.getElementById('is-art-version').innerText = `Version ${version}.`
+  document.getElementById('is-art-version').innerText = `Version ${version}`
+  document.getElementById('is-art-contract-id').innerText = `(${CONTRACT_ID}).`
 }
 
 function renderStatus (contractState) {
